@@ -44,7 +44,7 @@ func TestDisplayName(t *testing.T) {
 }
 
 // Test usernames validation. Which only should allow `^[a-zA-Z0-9_]+$`
-// But shouldn't allow any other weird characters and have a minuium of 5 chars and max 20.
+// But shouldn't allow any other weird characters and have a minuium of 5 chars and max 20!
 func TestUsername(t *testing.T) {
 	t.Parallel()
 	InitializeValidator()
