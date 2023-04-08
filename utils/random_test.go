@@ -27,7 +27,7 @@ func TestRandomString(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		s := RandomString(20)
 		if len(s) != 40 {
-			t.Error("RandomString returned wrong length")
+			t.Error("RandomString returned wrong lengtheh")
 		}
 	}
 }
