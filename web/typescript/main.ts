@@ -10,6 +10,7 @@ import {getSettings} from './utils/storage';
 import {initViewStyle} from './page/view-style';
 import {page404} from './page/404';
 import {form_sort} from './page/form-sort';
+import {editStyleFields} from './page/edit';
 import {updateTimestamps} from './utils/time';
 
 // Once settings update we should reinstalize any functionallity.
@@ -51,6 +52,10 @@ function pageSpecificFunctions(settings: UserSettings) {
     }
     if (location.pathname.startsWith('/style/') && styleViewRegex.test(location.pathname)) {
         initViewStyle();
+    }
+    
+    if (location.pathname.startsWith('/edit/')) {
+        editStyleFields();
     }
 
     if (location.pathname.startsWith('/search') || location.pathname.startsWith('/explore') || location.pathname.startsWith('/user/')) {

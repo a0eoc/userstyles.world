@@ -45,8 +45,7 @@
 	<label for="description">Description</label>
 	<i class="fg:3" id="description-hint">Short description of what your userstyle does in plain text. Will be used for SEO and rich embeds.</i>
 	<textarea
-		required pattern="^[a-zA-Z0-9!@#$%-_ ]+$"
-		type="text" name="description" id="description"
+		required type="text" name="description" id="description"
 		aria-describedby="description-hint"
 		placeholder="e.g. UI experiments for UserStyles.world."
 	>{{ .Styles.Description }}</textarea>
