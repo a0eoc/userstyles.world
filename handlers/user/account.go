@@ -151,6 +151,7 @@ func EditAccount(c *fiber.Ctx) error {
 
 	case "flags":
 		b, err := json.Marshal(models.Flags{
+			Theme:           c.FormValue("themeSelect"),
 			Welcome:         c.FormValue("welcomeFlag") == "on",
 			Sidebar:         c.FormValue("sidebarFlag") == "on",
 			SearchAutofocus: c.FormValue("autofocusFlag") == "on",

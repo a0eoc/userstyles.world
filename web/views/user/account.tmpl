@@ -227,6 +227,17 @@
 	<h2 class="td:d">Feature preview</h2>
 	<p>Opt in and help us test (unfinished) features.</p>
 	<form class="Form Form-box mt:m" method="post" action="/account/flags">
+		<div class="Form-section">
+			<label for="themeSelect">Color-scheme</label>
+			<div class="Form-row">
+				<select class="Form-select" name="themeSelect" id="themeSelect" title="Set website color scheme">
+					<option value="system" {{ if eq .flags.Theme "system" }}selected{{ end }}>Follow system theme</option>
+					<option value="dark" {{ if eq .flags.Theme "dark" }}selected{{ end }}>Dark mode</option>
+					<option value="light" {{ if eq .flags.Theme "light" }}selected{{ end }}>Light mode</option>
+				</select>
+				{{ template "icons/chevrons-up-down" }}
+			</div>
+		</div>
 		<div>
 			<div class="checkbox iflex">
 				<input

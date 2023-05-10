@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html data-color-scheme="dark" lang="en">
+<!--data-color-scheme="dark"-->
+<html  data-theme="{{ .flags.Theme }}" lang="en">
 	<head>
 		{{ template "partials/head" . }}
 	</head>
-	<body {{ if .flags.Sidebar }}data-flags="sidebar"{{ end }}>
+	<body
+		{{ if .flags.Sidebar }}data-flags="sidebar"{{ end }}
+		data-color-scheme="{{ .flags.Theme }}">
 		<a href="#content">Skip to content</a>
 		{{ if .flags.Sidebar }}
 			{{ template "partials/sidebar" . }}

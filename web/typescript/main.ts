@@ -15,7 +15,7 @@ import {updateTimestamps} from './utils/time';
 
 // Once settings update we should reinstalize any functionallity.
 // That relies on this settings.
-const onSettingsUpdate = () => initalizeOrUpdateColorScheme(getSettings().colorScheme);
+const onSettingsUpdate = () => initalizeOrUpdateColorScheme();
 
 const whenDOMReady = () => {
     broadcastReady();
@@ -32,7 +32,7 @@ doDomOperation(whenDOMReady);
 // Initalize functions that requires settings and don't depend on the DOM.
 // Note that we don't save getSettings() result, as this initalize is a 1 time thing
 // And having it sit in the memory is kinda useless.
-initalizeOrUpdateColorScheme(getSettings().colorScheme);
+initalizeOrUpdateColorScheme();
 
 const styleViewRegex = /\/style\/\d+\/(?!promote)\S*/;
 function pageSpecificFunctions(settings: UserSettings) {

@@ -7,7 +7,6 @@ export function setValues(settings: UserSettings) {
     if (!window.location.pathname.startsWith('/account')) {
         return;
     }
-    (document.getElementById(`${PREFIX}--color-scheme`) as HTMLSelectElement).value = settings.colorScheme;
     (document.getElementById(`${PREFIX}--entries-behavior`) as HTMLSelectElement).value = settings.entriesBehavior;
 }
 
@@ -19,8 +18,6 @@ export function saveUserSettingsButton(onSettingsUpdate: () => void) {
     saveButton.addEventListener('click', () => {
         const newSettings: Partial<UserSettings> = {};
 
-        newSettings.colorScheme =
-            (document.getElementById(`${PREFIX}--color-scheme`) as HTMLSelectElement).value as any;
         newSettings.entriesBehavior =
             (document.getElementById(`${PREFIX}--entries-behavior`) as HTMLSelectElement).value as any;
 

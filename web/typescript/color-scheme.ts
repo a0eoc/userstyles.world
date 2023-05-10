@@ -16,9 +16,13 @@ const setColorSchemeMeta = (value: string) => {
 const lightScheme = matchMedia('(prefers-color-scheme: light)');
 const handleColorScheme = () => setColorSchemeAttribute(lightScheme.matches ? 'light' : 'dark');
 
-export function initalizeOrUpdateColorScheme(colorScheme: UserSettings['colorScheme']) {
+export function initalizeOrUpdateColorScheme() {
+    console.log("ihopeiwontforgotthis");
+
+    // i'd like to set colorScheme to data-theme from main layout
+
     switch (colorScheme) {
-        case 'follow-system': {
+        case 'system': {
             handleColorScheme();
             setColorSchemeMeta('dark light');
             // As it follows the system we should listen for any changes.

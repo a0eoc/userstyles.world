@@ -1,11 +1,11 @@
 export interface UserSettings {
-    colorScheme: 'dark' | 'light' | 'follow-system';
+    colorScheme: 'dark' | 'light' | 'system';
     entriesBehavior: 'hover' | 'click' | 'no-hide';
     redirect: string;
 }
 
 const DEFAULT_SETTINGS: UserSettings = {
-    colorScheme: 'follow-system',
+    colorScheme: 'system',
     entriesBehavior: 'click',
     redirect: '',
 };
