@@ -107,7 +107,7 @@ hr { border: none; border-top: 1px solid var(--bg-3)  }
     &.stylus {
         color: var(--fg-1);
         border-color: var(--st-3);
-        background-color: var(--st-4);
+        background: linear-gradient(0.25turn, #16827f 0%, #16aca9 90%, #12b9b5 100%);
 
         &::after { color: inherit }
 
