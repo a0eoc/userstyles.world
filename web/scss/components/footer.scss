@@ -15,7 +15,7 @@
         padding-left: 0px;
 
         @media screen and (min-width: 960px) {
-            &:not(:first-child) { margin-left: 4rem }
+            &:not(:first-child) { margin-left: 2rem } /* world be nicer to have rows. we can't have more than 3 columns at best. */
         }
 
         &.half { flex-basis: 50% }
