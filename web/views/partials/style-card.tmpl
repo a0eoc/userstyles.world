@@ -6,6 +6,16 @@
 	</a>
 
 	<div class="card-body f:col p:m">
+		{{ with .Sort }}
+			{{ if or (eq .Sort "newest") (eq .Sort "oldest") }}
+				<small class="fg:3" style="margin-bottom: 0.125rem">
+					<span>Created</span>
+					<time datetime="{{ .CreatedAt | iso }}">
+						{{ .CreatedAt | rel }}
+					</time>
+				</small>
+			{{ end }}
+		{{ end }}
 		<small class="fg:3" style="margin-bottom: 0.125rem">
 			<span>Updated</span>
 			<time datetime="{{ .UpdatedAt | iso }}">

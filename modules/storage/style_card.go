@@ -20,7 +20,7 @@ const (
 
 var (
 	selectCards = strings.Join([]string{
-		"id", "updated_at", "name", "preview",
+		"id", "created_at", "updated_at", "name", "preview",
 		selectAuthor, selectInstalls, selectViews, selectRatings,
 	}, ", ")
 	selectSearchCards = strings.Join([]string{
