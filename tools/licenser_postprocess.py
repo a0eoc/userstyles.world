@@ -8,7 +8,7 @@ from shutil import copyfile
 
 # Optionally specify the changes for GPL-licensed dependencies.
 ChangedDependencies = {
-	"stylus-logo": "\n- vectorized by [pabli24](https://github.com/pabli24)\n- converted to monochrome outline by [0eoc](https://userstyles.world/user/0eoc)",
+	"stylus-logo": "\n- vectorized by [pabli24](https://github.com/pabli24)\n- converted to monochrome outline by [0ko](https://userstyles.world/user/0ko)",
 }
 
 # Directory where the missing licenses are.
