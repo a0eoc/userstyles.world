@@ -1,7 +1,6 @@
 package main
 
 import (
-	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -43,9 +42,6 @@ func main() {
 	validator.Init()
 	database.Initialize()
 	cron.Initialize()
-
-	log.Info.Println("#####")
-	log.Info.Println(util.GetLocation(net.ParseIP("77.88.8.8")))
 
 	app := fiber.New(fiber.Config{
 		Views:       templates.New(http.FS(web.ViewsDir)),
