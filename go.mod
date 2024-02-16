@@ -16,6 +16,7 @@ require (
 	github.com/jarcoal/httpmock v1.2.0
 	github.com/microcosm-cc/bluemonday v1.0.21
 	github.com/ohler55/ojg v1.14.5
+	github.com/oschwald/maxminddb-golang v1.12.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/prometheus/client_golang v1.13.0
 	github.com/userstyles-world/go-chart/v2 v2.5.2
