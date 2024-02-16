@@ -27,17 +27,17 @@ var hash_path_cur = dbpath + ".sha1sum"
 func GetNewHash() (hash string, err error) {
 	hash_req, err := client.Get(hash_path_new)
 	if err != nil {
-		return "", fmt.Errorf("Failed to get new hash")
+		return "", fmt.Errorf("failed to get new hash")
 	}
 	defer hash_req.Body.Close()
 
 	if hash_req.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("Failed to get new hash (non-OK response)")
+		return "", fmt.Errorf("failed to get new hash (non-OK response)")
 	}
 
 	hash_new_bytes, err := io.ReadAll(hash_req.Body)
 	if err != nil {
-		return "", fmt.Errorf("Failed to get new hash (io read)")
+		return "", fmt.Errorf("failed to get new hash (io read)")
 	}
 
 	return string(hash_new_bytes), nil
@@ -46,13 +46,13 @@ func GetNewHash() (hash string, err error) {
 func GetCurrentHash() (hash string, err error) {
 	hash_current_bytes, err := os.ReadFile(hash_path_cur)
 	if err != nil {
-		return "", fmt.Errorf("Failed to get current hash")
+		return "", fmt.Errorf("failed to get current hash")
 	}
 
 	return string(hash_current_bytes), nil
 }
 
-func DownloadMMDB() (err error) {
+func DownloadMMDB() error {
 	// download file to data
 	// save new hash to data
 	return nil
