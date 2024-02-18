@@ -59,7 +59,6 @@ func DownloadMMDB() error {
 }
 
 func Initialize() {
-
 	hash_new, err := GetNewHash()
 	if err != nil {
 		log.Warn.Print(err.Error())
@@ -70,7 +69,11 @@ func Initialize() {
 		log.Warn.Print(err.Error())
 	}
 
-	if hash_new != hash_current { // or if file not present
+	/* Logic for deciding to download MMDB: */
+	/* - don't download if was not able to get latest hash */
+	/* - don't download if current hash is already latest */
+	/* otherwise download */
+	if hash_new != "" && hash_new != hash_current {
 		DownloadMMDB()
 	}
 
