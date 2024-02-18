@@ -52,13 +52,41 @@ func GetCurrentHash() (hash string, err error) {
 	return string(hash_current_bytes), nil
 }
 
+func SaveCurrentHash(hash string) error {
+	err := os.WriteFile(dbpath, []byte(hash), 0o755)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func DownloadMMDB() error {
-	// download file to data
-	// save new hash to data
+	// can download .gz and extract. 2 times less bandwidth and time spent downloading.
+
+	file_req, err := http.Get(mirror + dbname)
+	if err != nil {
+		return err
+	}
+
+	if file_req.StatusCode != http.StatusOK {
+		return fmt.Errorf("non-OK response")
+	}
+
+	file_bytes, err := io.ReadAll(file_req.Body)
+	if err != nil {
+		return err
+	}
+
+	err = os.WriteFile(dbpath, file_bytes, 0o755)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
 func Initialize() {
+	// can verify hash of actual file instead of reading it from disk
+
 	hash_latest, err := GetLatestHash()
 	if err != nil {
 		log.Warn.Print(err.Error())
@@ -74,7 +102,13 @@ func Initialize() {
 	/* - don't download if current hash is already latest */
 	/* otherwise download */
 	if hash_latest != "" && hash_latest != hash_current {
-		DownloadMMDB()
+		err = DownloadMMDB()
+		if err != nil {
+			log.Warn.Fatal("Failed to download latest mmdb: ", err.Error())
+		} else {
+			/* only save latest hash if the download was successful */
+			SaveCurrentHash(hash_current)
+		}
 	}
 
 	dbreader, err := maxminddb.Open(dbpath)
