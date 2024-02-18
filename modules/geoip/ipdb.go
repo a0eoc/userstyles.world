@@ -21,26 +21,26 @@ var client http.Client
 var db *maxminddb.Reader
 
 var dbpath = path.Join("data", "ipdb", dbname)
-var hash_path_new = mirror + dbname + ".sha1sum"
+var hash_path_latest = mirror + dbname + ".sha1sum"
 var hash_path_cur = dbpath + ".sha1sum"
 
-func GetNewHash() (hash string, err error) {
-	hash_req, err := client.Get(hash_path_new)
+func GetLatestHash() (hash string, err error) {
+	hash_req, err := client.Get(hash_path_latest)
 	if err != nil {
-		return "", fmt.Errorf("failed to get new hash")
+		return "", fmt.Errorf("failed to get latest hash")
 	}
 	defer hash_req.Body.Close()
 
 	if hash_req.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("failed to get new hash (non-OK response)")
+		return "", fmt.Errorf("failed to get latest hash (non-OK response)")
 	}
 
-	hash_new_bytes, err := io.ReadAll(hash_req.Body)
+	hash_latest_bytes, err := io.ReadAll(hash_req.Body)
 	if err != nil {
-		return "", fmt.Errorf("failed to get new hash (io read)")
+		return "", fmt.Errorf("failed to get latest hash (io read)")
 	}
 
-	return string(hash_new_bytes), nil
+	return string(hash_latest_bytes), nil
 }
 
 func GetCurrentHash() (hash string, err error) {
@@ -59,7 +59,7 @@ func DownloadMMDB() error {
 }
 
 func Initialize() {
-	hash_new, err := GetNewHash()
+	hash_latest, err := GetLatestHash()
 	if err != nil {
 		log.Warn.Print(err.Error())
 	}
@@ -73,7 +73,7 @@ func Initialize() {
 	/* - don't download if was not able to get latest hash */
 	/* - don't download if current hash is already latest */
 	/* otherwise download */
-	if hash_new != "" && hash_new != hash_current {
+	if hash_latest != "" && hash_latest != hash_current {
 		DownloadMMDB()
 	}
 
