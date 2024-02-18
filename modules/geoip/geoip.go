@@ -20,7 +20,7 @@ const (
 var client http.Client
 var db *maxminddb.Reader
 
-var dbpath = path.Join("data", "ipdb", dbname)
+var dbpath = path.Join("data", "geoip", dbname)
 var hash_path_latest = mirror + dbname + ".sha1sum"
 var hash_path_current = dbpath + ".sha1sum"
 
@@ -53,7 +53,7 @@ func GetCurrentHash() (hash string, err error) {
 }
 
 func SaveCurrentHash(hash string) error {
-	err := os.WriteFile(dbpath, []byte(hash), 0o755)
+	err := os.WriteFile(hash_path_current, []byte(hash), 0o755)
 	if err != nil {
 		return err
 	}
@@ -63,6 +63,7 @@ func SaveCurrentHash(hash string) error {
 func DownloadMMDB() error {
 	// can download .gz and extract. 2 times less bandwidth and time spent downloading.
 
+	log.Warn.Print("Downloading latest MMDB...")
 	file_req, err := http.Get(mirror + dbname)
 	if err != nil {
 		return err
@@ -85,7 +86,7 @@ func DownloadMMDB() error {
 }
 
 func Initialize() {
-	// can verify hash of actual file instead of reading it from disk
+	// can verify hash of actual file instead of reading it from .sha1sum file
 
 	hash_latest, err := GetLatestHash()
 	if err != nil {
@@ -107,7 +108,7 @@ func Initialize() {
 			log.Warn.Fatal("Failed to download latest mmdb: ", err.Error())
 		} else {
 			/* only save latest hash if the download was successful */
-			SaveCurrentHash(hash_current)
+			SaveCurrentHash(hash_latest)
 		}
 	}
 
