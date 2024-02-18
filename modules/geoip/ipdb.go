@@ -22,7 +22,7 @@ var db *maxminddb.Reader
 
 var dbpath = path.Join("data", "ipdb", dbname)
 var hash_path_latest = mirror + dbname + ".sha1sum"
-var hash_path_cur = dbpath + ".sha1sum"
+var hash_path_current = dbpath + ".sha1sum"
 
 func GetLatestHash() (hash string, err error) {
 	hash_req, err := client.Get(hash_path_latest)
@@ -44,7 +44,7 @@ func GetLatestHash() (hash string, err error) {
 }
 
 func GetCurrentHash() (hash string, err error) {
-	hash_current_bytes, err := os.ReadFile(hash_path_cur)
+	hash_current_bytes, err := os.ReadFile(hash_path_current)
 	if err != nil {
 		return "", fmt.Errorf("failed to get current hash")
 	}
