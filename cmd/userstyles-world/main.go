@@ -25,6 +25,7 @@ import (
 	"userstyles.world/modules/cron"
 	database "userstyles.world/modules/database/init"
 	"userstyles.world/modules/email"
+	"userstyles.world/modules/geoip"
 	"userstyles.world/modules/images"
 	"userstyles.world/modules/log"
 	"userstyles.world/modules/templates"
@@ -38,7 +39,7 @@ func main() {
 	cache.Initialize()
 	images.CheckVips()
 	util.InitCrypto()
-	util.InitIPDB()
+	geoip.Initialize()
 	validator.Init()
 	database.Initialize()
 	cron.Initialize()

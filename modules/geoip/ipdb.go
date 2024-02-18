@@ -1,4 +1,4 @@
-package util
+package geoip
 
 import (
 	"fmt"
@@ -58,7 +58,7 @@ func DownloadMMDB() error {
 	return nil
 }
 
-func InitIPDB() {
+func Initialize() {
 
 	hash_new, err := GetNewHash()
 	if err != nil {
