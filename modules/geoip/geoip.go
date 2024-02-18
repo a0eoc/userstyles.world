@@ -119,12 +119,24 @@ func Initialize() {
 	db = dbreader
 }
 
-func GetLocation(addr net.IP) any {
-	var location any
+func GetLocation(addr net.IP) string {
+	var location struct {
+		Country struct {
+			Names struct {
+				En string `maxminddb:"en"`
+			} `maxminddb:"names"`
+			ISOCode string `maxminddb:"iso_code"`
+		} `maxminddb:"country"`
+		City struct {
+			Names struct {
+				En string `maxminddb:"en"`
+			} `maxminddb:"names"`
+		} `maxminddb:"city"`
+	}
 	err := db.Lookup(addr, &location)
 	if err != nil {
 		log.Warn.Print("Failed to lookup address: ", err.Error())
-		return err
+		return "Unknown location"
 	}
-	return location
+	return location.City.Names.En + ", " + location.Country.Names.En
 }
